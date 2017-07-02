@@ -15,4 +15,43 @@
         }(this);
         return this;
     };
-    
+    $(function () {
+        var getMessageText, message_side, sendMessage;
+        message_side = 'right';
+        getMessageText = function () {
+            var $message_input;
+            $message_input = $('.message_input');
+            return $message_input.val();
+        };
+        sendMessage = function (text) {
+            var $messages, message;
+            if (text.trim() === '') {
+                return;
+            }
+            $('.message_input').val('');
+            $messages = $('.messages');
+            message_side = message_side === 'left' ? 'right' : 'left';
+            message = new Message({
+                text: text,
+                message_side: message_side
+            });
+            message.draw();
+            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+        };
+        $('.send_message').click(function (e) {
+            return sendMessage(getMessageText());
+        });
+        $('.message_input').keyup(function (e) {
+            if (e.which === 13) {
+                return sendMessage(getMessageText());
+            }
+        });
+        sendMessage('Hola');
+        setTimeout(function () {
+            return sendMessage('Hola!!! soy asistente virtual del Banco de Chile y cuéntame, ¿en qué te puedo ayudar hoy?');
+        }, 1000);
+        return setTimeout(function () {
+            return sendMessage('Quiero saber cuanto dinero tiene mi saldo, por favor');
+        }, 2000);
+    });
+}.call(this));
