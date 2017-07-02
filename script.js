@@ -48,7 +48,7 @@
         });
         sendMessage('Hola');
         setTimeout(function () {
-            return sendMessage('Hola!!! soy asistente virtual del Banco de Chile y cuéntame, ¿en qué te puedo ayudar hoy?');
+            return sendMessage('Hola, Soy <b>asistente virtual</b> del <b>Banco de Chile</b> y cuéntame, ¿En qué te puedo ayudar hoy?');
         }, 1000);
         return setTimeout(function () {
             return sendMessage('Quiero saber cuanto dinero tiene mi saldo, por favor');
